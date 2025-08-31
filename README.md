@@ -1,6 +1,7 @@
 This game was made by a 3 member team.
 This was made for a game jam under the theme "Zero Contact".
-Won the 2nd place under university catogary.
+EXE 2025 Game Jam (University) organized by levelstair https://exe.levelstair.com.
+Won the 2nd place.
 All sprites, audio are under the directory assets. 
 All scenes are under the directory scenes. 
 All the scripts are under the directory scripts.
