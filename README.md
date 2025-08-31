@@ -1,4 +1,6 @@
-This game was made by a 3 member team. 
+This game was made by a 3 member team.
+This was made for a game jam under the theme "Zero Contact".
+Won the 2nd place under university catogary.
 All sprites, audio are under the directory assets. 
 All scenes are under the directory scenes. 
 All the scripts are under the directory scripts.
