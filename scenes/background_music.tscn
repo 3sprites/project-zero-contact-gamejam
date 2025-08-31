@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cydg6h5c8y6jx"]
+
+[ext_resource type="AudioStream" uid="uid://e4383xmeevfl" path="res://assets/audio/a-goofy-and-silly-medieval-song-161310.mp3" id="1_0rulj"]
+
+[node name="background_music" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_0rulj")
+autoplay = true
+bus = &"background_music"

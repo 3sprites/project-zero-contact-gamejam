@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3sf7k1gsy237"]
+
+[ext_resource type="Texture2D" uid="uid://dryr4gqdwyuxr" path="res://assets/world1/environment/light_pole.png" id="1_ucsyj"]
+
+[sub_resource type="Gradient" id="Gradient_a35m3"]
+offsets = PackedFloat32Array(0, 0.753247)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3hibg"]
+gradient = SubResource("Gradient_a35m3")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.981651, 0.0366972)
+
+[node name="light_pole" type="Sprite2D"]
+z_index = -2
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(14, -2)
+color = Color(1, 0, 0, 1)
+range_z_min = 0
+texture = SubResource("GradientTexture2D_3hibg")
+
+[node name="LightPole" type="Sprite2D" parent="."]
+position = Vector2(0, -10)
+texture = ExtResource("1_ucsyj")

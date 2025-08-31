@@ -1,0 +1,134 @@
+[gd_scene load_steps=19 format=3 uid="uid://v3767g0q5f8e"]
+
+[ext_resource type="Script" uid="uid://c5vmgov2wr6xf" path="res://scripts/world1/player_1.gd" id="1_fiqb5"]
+[ext_resource type="Texture2D" uid="uid://caw06hw6nm2gl" path="res://assets/world1/player1/attack.png" id="2_0u8qe"]
+[ext_resource type="Texture2D" uid="uid://b5twh2mwn4cmr" path="res://assets/world1/player1/idle.png" id="3_0u8qe"]
+[ext_resource type="Texture2D" uid="uid://x8h5t781xuy2" path="res://assets/world1/player1/Sprite Run test.png" id="4_f66av"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f66av"]
+atlas = ExtResource("2_0u8qe")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jmm1l"]
+atlas = ExtResource("2_0u8qe")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvdkt"]
+atlas = ExtResource("2_0u8qe")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1o1vd"]
+atlas = ExtResource("2_0u8qe")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfc0x"]
+atlas = ExtResource("2_0u8qe")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0u8qe"]
+atlas = ExtResource("3_0u8qe")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6o2du"]
+atlas = ExtResource("3_0u8qe")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iytr0"]
+atlas = ExtResource("4_f66av")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jorxh"]
+atlas = ExtResource("4_f66av")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_esqey"]
+atlas = ExtResource("4_f66av")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yq5li"]
+atlas = ExtResource("4_f66av")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fg280"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f66av")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_jmm1l")
+}, {
+"duration": 0.4,
+"texture": SubResource("AtlasTexture_vvdkt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1o1vd")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_lfc0x")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0u8qe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6o2du")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iytr0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jorxh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_esqey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yq5li")
+}],
+"loop": true,
+"name": &"move",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6mvhy"]
+size = Vector2(10, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6o2du"]
+size = Vector2(9, 5.5)
+
+[node name="player1" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_fiqb5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_fg280")
+animation = &"move"
+autoplay = "idle"
+frame_progress = 0.566776
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_6mvhy")
+
+[node name="attack_area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="attack_collision_shape" type="CollisionShape2D" parent="attack_area"]
+position = Vector2(10.5, -8.25)
+shape = SubResource("RectangleShape2D_6o2du")
+disabled = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="attack_area" to="." method="_on_attack_area_body_entered"]

@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://csevnnfwim413"]
+
+[ext_resource type="PackedScene" uid="uid://jx7ailpftvmm" path="res://scenes/world1/enemy1.tscn" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://v3767g0q5f8e" path="res://scenes/world1/player1.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" path="res://scenes/world1/light_pole.tscn" id="3_lnu2h"]
+[ext_resource type="Texture2D" uid="uid://c6nm6ranti3h4" path="res://assets/world1/environment/WhatsApp Image 2025-08-02 at 14.41.16_47f2f240.jpg" id="4_lbhrr"]
+
+[sub_resource type="GDScript" id="GDScript_yqjtg"]
+script/source = "extends Node
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lbhrr"]
+bg_color = Color(0.427451, 0.670588, 0.407843, 0.231373)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iywne"]
+bg_color = Color(0.548665, 0.163765, 0.163832, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uwrxv"]
+
+[node name="game" type="Node2D"]
+
+[node name="game_manager" type="Node" parent="."]
+unique_name_in_owner = true
+script = SubResource("GDScript_yqjtg")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="health_bar" type="ProgressBar" parent="CanvasLayer"]
+offset_right = 428.0
+offset_bottom = 12.0
+theme_override_styles/background = SubResource("StyleBoxFlat_lbhrr")
+theme_override_styles/fill = SubResource("StyleBoxFlat_iywne")
+value = 100.0
+show_percentage = false
+
+[node name="enemy1" parent="." instance=ExtResource("1_uwrxv")]
+position = Vector2(33, 2)
+
+[node name="Area2D" type="StaticBody2D" parent="."]
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-2, 29)
+shape = SubResource("WorldBoundaryShape2D_uwrxv")
+
+[node name="player1" parent="." instance=ExtResource("2_yqjtg")]
+position = Vector2(-96, 22)
+
+[node name="Camera2D" type="Camera2D" parent="player1"]
+position = Vector2(3, -11)
+zoom = Vector2(5.545, 5.545)
+
+[node name="light_pole" parent="." instance=ExtResource("3_lnu2h")]
+position = Vector2(-54, 27)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -3
+position = Vector2(-2, -18.8203)
+scale = Vector2(0.30293, 0.143258)
+texture = ExtResource("4_lbhrr")
